@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <inputForm @todoWasSubmited="appendTodo"></inputForm>
+    <todoList @exterminateChild="exterminate" :items="todoList"></todoList>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import inputForm from './components/inputForm.vue'
+import todoList from './components/todoList.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    inputForm,
+    todoList
+  },
+  data() {
+      return {
+          todoList: []
+      }
+  },
+  methods: {
+      appendTodo(todo) {
+          this.todoList.push(todo);
+      },
+      exterminate(key) {
+          this.todoList.splice(key, 1);
+      }
+  },
+  created() {
+      alert('Mimimi is ilivi');
   }
 }
 </script>
